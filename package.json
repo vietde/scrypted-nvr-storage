@@ -1,0 +1,36 @@
+{
+  "name": "scrypted-nvr-storage",
+  "version": "0.1.0",
+  "description": "Saves camera clips and snapshots to a USB/network drive, Dropbox or Google Drive. Works with the AI Vision Alerts plugin.",
+  "main": "dist/main.nodejs.js",
+  "scripts": {
+    "postinstall": "node -e \"const fs=require('fs'),p='node_modules/@scrypted/sdk/dist/src/bin/scrypted-webpack.js';if(fs.existsSync(p)){let s=fs.readFileSync(p,'utf8');if(!s.includes('shell:'))fs.writeFileSync(p,s.replace('stdio: \\'inherit\\',','stdio: \\'inherit\\', shell: true,'))}\"",
+    "scrypted-setup-project": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-setup-project.js",
+    "prescrypted-setup-project": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-package-json.js",
+    "build": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-webpack.js",
+    "prepublishOnly": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-webpack.js",
+    "prescrypted-vscode-launch": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-webpack.js",
+    "scrypted-vscode-launch": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-deploy-debug.js",
+    "scrypted-deploy-debug": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-deploy-debug.js",
+    "scrypted-debug": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-debug.js",
+    "scrypted-deploy": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-deploy.js",
+    "scrypted-package-json": "node node_modules/@scrypted/sdk/dist/src/bin/scrypted-package-json.js"
+  },
+  "scrypted": {
+    "rollup": true,
+    "name": "NVR Storage",
+    "type": "API",
+    "interfaces": [
+      "MixinProvider",
+      "Settings",
+      "Notifier"
+    ]
+  },
+  "dependencies": {
+    "@scrypted/sdk": "^0.5.29"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "typescript": "^5.8.0"
+  }
+}
